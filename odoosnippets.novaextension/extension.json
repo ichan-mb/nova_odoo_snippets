@@ -1,0 +1,20 @@
+{
+  "identifier": "ichanmb.odoosnipets",
+  "name": "Odoo Snippets",
+  "organization": "Hassan M",
+  "description": "Snippets for Odoo developer",
+  "version": "0.1.0",
+  "categories": ["completions"],
+  "main": "main.js",
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:js",
+    "onLanguage:python",
+    "onLanguage:py",
+    "onLanguage:xml",
+    "onLanguage:csv"
+  ],
+  "entitlements": {
+    "filesystem": "readwrite"
+  }
+}

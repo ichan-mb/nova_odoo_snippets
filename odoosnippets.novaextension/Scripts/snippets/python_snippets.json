@@ -1,0 +1,348 @@
+{
+  "Manifest": {
+    "prefix": "manifest",
+    "body": [
+      "{",
+      "\t'name': '${0}',",
+      "\t'version': '${1:1.0}',",
+      "\t'description': '${2}',",
+      "\t'summary': '${3}',",
+      "\t'author': '${4}',",
+      "\t'website': '${5}',",
+      "\t'license': '${6:LGPL-3}',",
+      "\t'category': '${7}',",
+      "\t'depends': [\n\t\t'${8}'\n\t],",
+      "\t'data': [\n\t\t'${9}'\n\t],",
+      "\t'demo': [\n\t\t'${10}'\n\t],",
+      "\t'auto_install': ${11},",
+      "\t'application': ${12},",
+      "\t'assets': {",
+      "\t\t$13",
+      "\t}",
+      "}"
+    ],
+    "description": "Manifest JSON"
+  },
+  "Import": {
+    "prefix": "imo",
+    "body": ["from odoo import _, api, fields, models", "\n"],
+    "description": "Import Odoo Model/Fields/API"
+  },
+  "Import Odoo Exceptions": {
+    "prefix": "ime",
+    "body": [
+      "from odoo.exceptions import ValidationError, RedirectWarning, AccessDenied, AccessError, CacheMiss, MissingError, UserError"
+    ],
+    "description": "Import Odoo Exceptions"
+  },
+  "Import Logging": {
+    "prefix": "iml",
+    "body": [
+      "import logging",
+      "\n\n_logger = logging.getLogger(__name__)",
+      "\n"
+    ],
+    "description": "Import Logging"
+  },
+  "Import From": {
+    "prefix": "imf",
+    "body": ["from . import ${0:names}"],
+    "description": "Import From"
+  },
+  "Model": {
+    "prefix": "oomodel",
+    "body": [
+      "class ${0}(models.Model):",
+      "_name = '${2:model.technical.name}'",
+      "_description = '${2:model.technical.name}'",
+      "$3\t"
+    ],
+    "description": "Add model"
+  },
+  "Abstract Model": {
+    "prefix": "oomodelabstract",
+    "body": [
+      "class ${0}(models.AbstractModel):",
+      "_name = '${2:model.technical.name}'",
+      "_description = '${2:model.technical.name}'",
+      "$3\t"
+    ],
+    "description": "Add abstract model"
+  },
+  "Transient Model": {
+    "prefix": "oomodeltransient",
+    "body": [
+      "class ${0}(models.TransientModel):",
+      "_name = '${2:model.technical.name}'",
+      "_description = '${2:model.technical.name}'",
+      "$3\t"
+    ],
+    "description": "Add transient model"
+  },
+  "Char Field": {
+    "prefix": "oofchar",
+    "body": ["${0:field_name} = fields.Char('${1:Label}')$2"],
+    "description": "Char Field"
+  },
+  "Text Field": {
+    "prefix": "ooftext",
+    "body": ["${0:field_name} = fields.Text('${1:Label}')$2"],
+    "description": "Text Field"
+  },
+  "Html Field": {
+    "prefix": "oofhtml",
+    "body": ["${0:field_name} = fields.Html('${1:Label}')$2"],
+    "description": "Html Field"
+  },
+  "Boolean Field": {
+    "prefix": "oofboolean",
+    "body": ["${0:field_name} = fields.Boolean('${1:Label}')$2"],
+    "description": "Boolean Field"
+  },
+  "Integer Field": {
+    "prefix": "oofinteger",
+    "body": ["${0:field_name} = fields.Integer('${1:Label}')$2"],
+    "description": "Integer Field"
+  },
+  "Float Field": {
+    "prefix": "ooffloat",
+    "body": ["${0:field_name} = fields.Float('${1:Label}')$2"],
+    "description": "Float Field"
+  },
+  "Selection Field": {
+    "prefix": "oofselection",
+    "body": [
+      "${0:field_name} = fields.Selection([",
+      "\t('${1:key}', '${2:value}')",
+      "], string='${3:Label}')$4"
+    ],
+    "description": "Selection Field"
+  },
+  "Date Field": {
+    "prefix": "oofdate",
+    "body": ["${0:field_name} = fields.Date('${1:Label}')$2"],
+    "description": "Date Field"
+  },
+  "Datetime Field": {
+    "prefix": "oofdatetime",
+    "body": ["${0:field_name} = fields.Datetime('${1:Label}')$2"],
+    "description": "Datetime Field"
+  },
+  "Image Field": {
+    "prefix": "oofimage",
+    "body": [
+      "${0:field_name} = fields.Image('${1:Label}', max_width=${2}, max_height=${3})$4"
+    ],
+    "description": "Image Field"
+  },
+  "Binary Field": {
+    "prefix": "oofbinary",
+    "body": ["${0:field_name} = fields.Binary('${1:Label}')$2"],
+    "description": "Binary Field"
+  },
+  "Monetary Field": {
+    "prefix": "oofmonetary",
+    "body": ["${0:field_name} = fields.Monetary('${1:Label}')$2"],
+    "description": "Monetary Field"
+  },
+  "Many2one Field": {
+    "prefix": "oofmany2one",
+    "body": [
+      "${0:field_name}_id = fields.Many2one('${1:comodel_name}', string='${2:Label}')$3"
+    ],
+    "description": "Many2one Field"
+  },
+  "One2many Field": {
+    "prefix": "oofone2many",
+    "body": [
+      "${0:field_name}_ids = fields.One2many('${1:comodel_name}', '${2:inverse_field_name}', string='${3:Label}')$4"
+    ],
+    "description": "One2many Field"
+  },
+  "Many2many Field": {
+    "prefix": "oofmany2many",
+    "body": [
+      "${0:field_name}_ids = fields.Many2many('${1:comodel_name}', string='${2:Label}')$3"
+    ],
+    "description": "Many2many Field"
+  },
+  "Compute Char Field": {
+    "prefix": "oofcomputechar",
+    "body": [
+      "${0:field_name} = fields.Char(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Char Field"
+  },
+  "Compute Integer Field": {
+    "prefix": "oofcomputeint",
+    "body": [
+      "${0:field_name} = fields.Integer(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Integer Field"
+  },
+  "Compute Float Field": {
+    "prefix": "oofcomputefloat",
+    "body": [
+      "${0:field_name} = fields.Float(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Float Field"
+  },
+  "Compute Boolean Field": {
+    "prefix": "oofcomputebool",
+    "body": [
+      "${0:field_name} = fields.Boolean(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Boolean Field"
+  },
+  "Compute Date Field": {
+    "prefix": "oofcomputedate",
+    "body": [
+      "${0:field_name} = fields.Date(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Date Field"
+  },
+  "Compute Datetime Field": {
+    "prefix": "oofcomputedatetime",
+    "body": [
+      "${0:field_name} = fields.Datetime(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Datetime Field"
+  },
+  "Compute Monetary Field": {
+    "prefix": "oofcomputemonetary",
+    "body": [
+      "${0:field_name} = fields.Monetary(compute='_compute_${0}', string='${1:Label}')",
+      "",
+      "@api.depends('${2}')",
+      "def _compute_${0}(self):",
+      "\t{$3:pass}"
+    ],
+    "description": "Compute Monetary Field"
+  },
+  "Onchange Field": {
+    "prefix": "oofonchange",
+    "body": [
+      "@api.onchange('${0}')",
+      "def _onchange_${0}(self):",
+      "\t${1:pass}"
+    ],
+    "description": "Onchange Field"
+  },
+  "Field Constrains": {
+    "prefix": "oofconstrains",
+    "body": [
+      "@api.constrains('${0:fieldname}')",
+      "def _constrains_${0}(self):",
+      "\t${1:pass}"
+    ],
+    "description": "Field Constrains"
+  },
+  "SQL Constraints": {
+    "prefix": "oofconstrains",
+    "body": [
+      "_sql_constraints = [",
+      "\t(\"${1:field_name}_check\", \"check(${1})\", \"${2:Error message}\"),",
+      "\t(\"${1:field_name}_unique\", \"unique(${1})\", \"${2:Error message}\"),",
+      "]"
+    ],
+    "description": "SQL Constraints"
+  },
+  "Ensure One": {
+    "prefix": "ooone",
+    "body": ["self.ensure_one()"],
+    "description": "Ensure One"
+  },
+  "override": {
+    "prefix": "oooverride",
+    "body": [
+      "def ${0:method_name}(self, ${1:vals}):",
+      "\tres = super().${0:method_name}(${1:vals})",
+      "\t$2",
+      "\treturn res"
+    ],
+    "description": "Override Method"
+  },
+  "create": {
+    "prefix": "oocreate",
+    "body": [
+      "@api.model_create_multi",
+      "def create(self, ${0:vals}):",
+      "\treturn super().create(${0:vals})"
+    ],
+    "description": "Create Method"
+  },
+  "write": {
+    "prefix": "oowrite",
+    "body": ["def write(self, vals):", "\treturn super().write(vals)"],
+    "description": "Write Method"
+  },
+  "unlink": {
+    "prefix": "oounlink",
+    "body": ["def unlink(self):", "\treturn super().unlink()"],
+    "description": "Unlink Method"
+  },
+  "related": {
+    "prefix": "related",
+    "body": ["related='${1:field_name}'"],
+    "description": "Related Attribute"
+  },
+  "required": {
+    "prefix": "required",
+    "body": ["required=True"],
+    "description": "Required Attribute"
+  },
+  "readonly": {
+    "prefix": "readonly",
+    "body": ["readonly=True"],
+    "description": "Readonly Attribute"
+  },
+  "copy": {
+    "prefix": "copy",
+    "body": ["copy=True"],
+    "description": "Copy Attribute"
+  },
+  "store": {
+    "prefix": "store",
+    "body": ["store=True"],
+    "description": "Store Attribute"
+  },
+  "digits": {
+    "prefix": "digits",
+    "body": ["digits='${1}'"],
+    "description": "Digits Attribute"
+  },
+  "help": {
+    "prefix": "help",
+    "body": ["help='${1}'"],
+    "description": "Help Attribute"
+  },
+  "check_company": {
+    "prefix": "check_company",
+    "body": ["check_company=True"],
+    "description": "Check Company Attribute"
+  }
+}
