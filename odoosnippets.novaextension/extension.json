@@ -3,6 +3,7 @@
   "name": "Odoo Snippets",
   "organization": "Hassan M",
   "description": "Snippets for Odoo developer",
+  "repository": "https://github.com/ichan-mb/nova_odoo_snippets",
   "version": "0.1.0",
   "categories": ["completions"],
   "main": "main.js",
